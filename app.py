@@ -9,18 +9,18 @@ import io
 from PIL import Image
 import json
 
-# キャッシュで速度向上
+# secretsからJSONキー読み込み (Cloud用)
 @st.cache_resource
 def load_data():
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+    creds_dict = st.secrets["google_service_account"]  # secretsから取得
+    creds = ServiceAccountCredentials.from_json(creds_dict)
     client = gspread.authorize(creds)
     sheet = client.open("２０２５イーグルスジュニア個人成績").sheet1
-    return pd.DataFrame(sheet.get_all_records())  # 部分読み込み可能に拡張可
+    return pd.DataFrame(sheet.get_all_records())
 
 data = load_data()
 
-# YouTube APIキー (secretsから)
+# YouTube APIキーもsecretsから
 YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
 
 st.set_page_config(page_title="Improved Baseball App", layout="wide")  # ワイド/モバイル対応
