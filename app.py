@@ -3,13 +3,11 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import matplotlib.pyplot as plt
-import mediapipe as mp
 import cv2
 import requests
 import io
-from PIL import Image  # 軽量PDF用
+from PIL import Image
 import json
-import asyncio  # 非同期用
 
 # キャッシュで速度向上
 @st.cache_resource
