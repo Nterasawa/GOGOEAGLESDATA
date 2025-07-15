@@ -83,19 +83,14 @@ with tab5:  # ランキング
 with tab6:  # フォーム分析 (動画)
     uploaded = st.file_uploader("動画アップロード")
     if uploaded:
-        with st.spinner("解析中..."):
-            mp_pose = mp.solutions.pose
-            with mp_pose.Pose() as pose:
-                cap = cv2.VideoCapture(uploaded.name)
-                frame_count = 0
-                while cap.isOpened() and frame_count < 10:  # 軽量: 最初の10フレームのみ
-                    ret, frame = cap.read()
-                    if not ret: break
-                    results = pose.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-                    if results.pose_landmarks:
-                        elbow = results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ELBOW]
-                        st.write(f"フレーム{frame_count}: 肘Y位置 {elbow.y:.2f} - アドバイス: 肘高めで球速UP")
-                    frame_count += 1
+        with st.spinner("動画読み込み中..."):
+            cap = cv2.VideoCapture(uploaded.name)
+            ret, frame = cap.read()
+            if ret:
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                img = Image.fromarray(frame_rgb)
+                st.image(img, caption="動画の最初のフレーム - アドバイス: フォームを確認してください")
+                st.write("アドバイス: 肘を高く保つ練習を。詳細解析はローカルで。")
             cap.release()
 
 # PDFダウンロード (軽量版)

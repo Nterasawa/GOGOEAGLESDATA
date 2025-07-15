@@ -1,9 +1,8 @@
-streamlit
+streamlit==1.35.0
 pandas
 gspread
 oauth2client
 matplotlib
-mediapipe
-opencv-python
 requests
 pillow
+opencv-python-headless==4.8.0.74  # 動画プレビュー用、軽量
