@@ -89,8 +89,8 @@ with tab6:  # フォーム分析 (動画)
             if ret:
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 img = Image.fromarray(frame_rgb)
-                st.image(img, caption="動画の最初のフレーム - アドバイス: フォームを確認してください")
-                st.write("アドバイス: 肘を高く保つ練習を。詳細解析はローカルで。")
+                st.image(img, caption="動画フレーム")
+                st.write("アドバイス: フォームを目視確認。肘位置を高く保つ。")
             cap.release()
 
 # PDFダウンロード (軽量版)

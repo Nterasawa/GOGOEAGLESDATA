@@ -5,4 +5,4 @@ oauth2client
 matplotlib
 requests
 pillow
-opencv-python-headless==4.8.0.74  # 動画プレビュー用、軽量
+opencv-python-headless==4.8.0.74  # 動画用
