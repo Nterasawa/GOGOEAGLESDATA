@@ -1,0 +1,9 @@
+streamlit
+pandas
+gspread
+oauth2client
+matplotlib
+mediapipe
+opencv-python
+requests
+pillow
